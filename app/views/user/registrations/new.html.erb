@@ -1,0 +1,108 @@
+<h2><strong>新規登録</strong></h2>
+
+<%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+  <%= render "user/shared/error_messages", resource: resource %>
+
+  <table>
+    <tr>
+      <div class="field">
+        <td>名前</td>
+        <td>(姓)</td>
+        <td><%= f.text_field :last_name, placeholder: "令和" %></td>
+        <td>(名)</td>
+        <td><%= f.text_field :first_name, placeholder: "太郎" %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td>フリガナ</td>
+        <td>(セイ)</td>
+        <td><%= f.text_field :last_name_kana, placeholder: "レイワ" %></td>
+        <td>(メイ)</td>
+        <td><%= f.text_field :first_name_kana, placeholder: "タロウ" %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td>メールアドレス</td>
+        <td></td>
+        <td><%= f.email_field :email, placeholder: "sample@exaple.com", autofocus: true, autocomplete: "email" %></td>
+        <td></td>
+        <td></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td>住所</td>
+        <td></td>
+        <td><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0" %></td>
+        <td></td>
+        <td></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td>電話番号(ハイフンなし)</td>
+        <td></td>
+        <td><%= f.text_field :telephone_number, placeholder: "00000000000" %></td>
+        <td></td>
+        <td></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td>ニックネーム</td>
+        <td></td>
+        <td><%= f.text_field :name, placeholder: "令和くん" %></td>
+        <td></td>
+        <td></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td>自己紹介</td>
+        <td></td>
+        <td><%= f.text_field :self_introduction, placeholder: "よろしくお願いします！" %></td>
+        <td></td>
+        <td></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td>
+          パスワード
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %>文字以上)</em>
+          <% end %>
+        </td>
+        <td></td>
+        <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+        <td></td>
+        <td></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td>パスワード(確認用)</td>
+        <td></td>
+        <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+        <td></td>
+        <td></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="actions">
+        <td></td>
+        <td></td>
+        <td><%= f.submit "新規登録", class: "btn btn-success" %></td>
+        <td></td>
+        <td></td>
+      </div>
+    </tr>
+  </table>
+<% end %>
+
+<h2><strong>既に登録済みの方</strong></h2>
+<div>
+  <%= render "user/shared/links" %> からログインしてください。
+</div>

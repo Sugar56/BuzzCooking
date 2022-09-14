@@ -1,2 +1,19 @@
-<h1>User::Homes#top</h1>
-<p>Find me in app/views/user/homes/top.html.erb</p>
+<p>
+  ようこそ、BuzzCookingへ！</br>
+  このサイトは、料理レシピのECサイトになります。</br>
+  ゲストの方でも投稿レシピの閲覧はできますが、</br>
+  コメント機能などのご利用にはユーザー登録が必要になります。
+</p>
+
+<div class="d-flex flex-row">
+  <h2><strong>新着レシピ</strong></h2>
+  <%= link_to '全ての投稿を見る >', recipes_path %>
+</div>
+
+<div class="d-flex flex-row">
+  <% @recipes.each do |recipe| %>
+    <%= image_tag recipe.get_image, size: "100x150" %>
+    <div><strong><%= link_to recipe.name, recipe_path(recipe.id) %></strong></div>
+    <div><strong><%= recipe.recipe_explanation %></strong></div>
+  <% end %>
+</div>

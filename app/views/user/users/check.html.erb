@@ -1,2 +1,12 @@
-<h1>User::Users#check</h1>
-<p>Find me in app/views/user/users/check.html.erb</p>
+<h2><strong>退会確認</strong></h2>
+
+<p><strong>本当に退会しますか？</strong></p>
+<div>
+  退会するとユーザー登録情報や</br>
+  これまでのお気に入り機能やコメント機能の</br>
+  ご利用ができなくなります。</br>
+  退会する場合は、「退会する」をクリックしてください。
+</div>
+<span>
+  <%= link_to '退会しない', user_path(current_user.id), class: "btn btn-sm btn-success" %>  <%= link_to "退会する", users_withdraw_path, method: :patch, data: { confilm: "本当に退会しますか？" }, class: "btn btn-sm btn-danger" %>
+</span>

@@ -1,2 +1,69 @@
-<h1>User::Recipes#new</h1>
-<p>Find me in app/views/user/recipes/new.html.erb</p>
+<h2><strong>新規レシピ投稿</strong></h2>
+
+<%= form_with model: @recipe, url: recipes_path, method: :post, local: true do |f| %>
+  <table>
+    <tr>
+      <div class="field">
+        <td>レシピ名</td>
+        <td><%= f.text_field :name %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td>投稿画像</td>
+        <td><%= f.file_field :image, accept: "image/*"%></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td>レシピ説明</td>
+        <td><%= f.text_area :recipe_explanation %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td>ジャンル</td>
+        <td></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td>材料</td>
+        <td></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <%= form_with model: @ingredient, url: recipe_ingredients_path, local: true do |f| %>
+        <td><%= f.text_field :name, placeholder: "材料名" %></td>
+        <% end %>
+        <%= form_with model: @ingredient_detail, url: recipe_ingredient_details_path, local: true do |f| %>
+        <td><%= f.text_field :amount, placeholder: "量" %></td>
+        <% end %>
+        <td></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td>調理法</td>
+        <%= form_with model: @cooking_method, url: recipe_cooking_methods_path, local: true do |f| %>
+        <td><%= f.text_field :step , placeholder: "1" %></td>
+        <td><%= f.text_area :cooking_explanation %></td>
+        <td></td>
+        <% end %>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td>ポイント</td>
+        <td><%= f.text_area :point_explanation %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="actions">
+        <td></td>
+        <td><%= f.submit "投稿", class: "btn btn-success" %></td>
+      </div>
+    </tr>
+  </table>
+<% end %>

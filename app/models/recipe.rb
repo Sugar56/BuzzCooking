@@ -1,7 +1,12 @@
 class Recipe < ApplicationRecord
 
   has_one_attached :image
+  belongs_to :user
+  has_many :recipe_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  belongs_to :genre
+  has_many :ingredients, dependent: :destroy
+  has_many :cooking_methods, dependent: :destroy
 
   def get_image
     unless image.attached?

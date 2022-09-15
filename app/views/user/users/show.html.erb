@@ -1,2 +1,26 @@
-<h1>User::Users#show</h1>
-<p>Find me in app/views/user/users/show.html.erb</p>
+<h2><%= @user.name %> のユーザページ</h2>
+
+<div class="user_profile">
+  <%= image_tag @user.get_profile_image(150,150) %>
+  <%= @user.name %>
+  <% if @user == current_user %>
+    <%= link_to "編集", edit_user_path(current_user.id) %>
+    <%= link_to "いいねした投稿", root_path %>
+  <% end %>
+  <%= @user.self_introduction %>
+</div>
+
+<div class="d-flex flex-row">
+  <h2><strong>投稿レシピ一覧</strong></h2>
+  <div>(全<%= @recipes_all.count %>件)</div>
+  <% if @user == current_user %>
+    <%= link_to "新規投稿", new_recipe_path, class: "btn btn-sm btn-success" %>
+  <% end %>
+</div>
+<%= @recipes.each do |recipe| %>
+  <%= image_tag recipe.get_image, size: "100x150" %>
+  <strong><%= link_to recipe.name, recipe_path(recipe.id) %></strong>
+
+  <%= recipe.recipe_explanation %>
+<% end %>
+<%= paginate @recipes %>

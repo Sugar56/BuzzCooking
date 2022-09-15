@@ -1,2 +1,10 @@
-<h1>User::Recipes#index</h1>
-<p>Find me in app/views/user/recipes/index.html.erb</p>
+<h2><strong>レシピ一覧</strong></h2>
+
+<%= @recipes.each do |recipe| %>
+  <%= image_tag recipe.get_image, size: "100x150" %>
+  <strong><%= link_to recipe.name, recipe_path(recipe.id) %></strong>
+
+  <%= recipe.recipe_explanation %>
+  <%= recipe.user.name %>
+<% end %>
+<%= paginate @recipes %>

@@ -3,6 +3,7 @@ class User::RecipesController < ApplicationController
   end
 
   def index
+    @recipes = Recipe.page(params[:page])
   end
 
   def show

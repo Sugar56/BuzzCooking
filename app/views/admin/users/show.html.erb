@@ -1,2 +1,60 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2><strong><%= @user.last_name %> <%= @user.first_name %>さんのユーザー詳細</strong></h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-11 offset-1">
+      <table class="table">
+        <tr>
+          <td>ユーザーid</td>
+          <td><%= @user.id %></td>
+        </tr>
+        <tr>
+          <td>氏名</td>
+          <td><%= @user.last_name %> <%= @user.first_name %></td>
+        </tr>
+        <tr>
+          <td>フリガナ</td>
+          <td><%= @user.last_name_kana %> <%= @user.first_name_kana %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td><%= @user.address %></td>
+        </tr>
+        <tr>
+          <td>電話番号</td>
+          <td><%= @user.telephone_number %></td>
+        </tr>
+        <tr>
+          <td>ニックネーム</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td>自己紹介</td>
+          <td><%= @user.self_introduction %></td>
+        </tr>
+        <tr>
+          <td>投稿レシピ名</td>
+          <td>
+            <% @recipes.each do |recipe| %>
+              <%= link_to admin_recipe_path(@user.id) do %>
+                <%= @user.recipe.name %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= link_to "編集", edit_admin_user_path(@user.id), class: 'btn btn-success' %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

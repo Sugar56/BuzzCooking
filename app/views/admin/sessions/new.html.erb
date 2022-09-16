@@ -1,26 +1,36 @@
-<h2>管理者ログイン</h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>管理者ログイン</h2>
+    </div>
+  </div>
 
-<%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
-  <table>
-    <tr>
-      <div class="field">
-        <td>メールアドレス</td>
-        <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
-      </div>
-    </tr>
-    <tr>
-      <div class="field">
-        <td>パスワード</td>
-        <td><%= f.password_field :password, autocomplete: "current-password" %></td>
-      </div>
-    </tr>
-    <tr>
-      <div class="actions">
-        <td></td>
-        <td><%= f.submit "ログイン", class: "btn btn-success" %></td>
-      </div>
-    </tr>
-  </table>
-<% end %>
+  <div class="row">
+    <div class="col-11 offset-1">
+      <%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
+        <table>
+          <tr>
+            <div class="field">
+              <td>メールアドレス</td>
+              <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+            </div>
+          </tr>
+          <tr>
+            <div class="field">
+              <td>パスワード</td>
+              <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+            </div>
+          </tr>
+          <tr>
+            <div class="actions">
+              <td></td>
+              <td><%= f.submit "ログイン", class: "btn btn-sm btn-primary" %></td>
+            </div>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 <%= render "admin/shared/links" %>

@@ -1,2 +1,89 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2><strong><%= @user.last_name %> <%= @user.first_name %>さんのユーザー詳細編集</strong></h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-11 offset-1">
+      <table class="table">
+        <tr>
+          <td>ユーザーid</td>
+          <td><%= @user.id %></td>
+          <td></td>
+        </tr>
+        <%= form_with model: @user, url: admin_user_path(@user), method: :patch, local:true do |f| %>
+        <tr>
+          <div class="field">
+            <td>氏名</td>
+            <td><%= f.text_field :last_name, class: "form-control last_name" %></td>
+            <td><%= f.text_field :first_name, class: "form-control first_name" %></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="field">
+            <td>フリガナ</td>
+            <td><%= f.text_field :last_name_kana, class: "form-control last_name_kana" %></td>
+            <td><%= f.text_field :first_name_kana, class: "form-control first_name_kana" %></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="field">
+            <td>メールアドレス</td>
+            <td><%= f.email_field :email, class: "form-control email" %></td>
+            <td></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="field">
+            <td>住所</td>
+            <td><%= f.text_field :address, class: "form-control address" %></td>
+            <td></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="field">
+            <td>電話番号</td>
+            <td><%= f.text_field :telephone_number, class: "form-control telephone_number" %></td>
+            <td></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="field">
+            <td>ニックネーム</td>
+            <td><%= f.text_field :name, class: "form-control name" %></td>
+            <td></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="field">
+            <td>自己紹介</td>
+            <td><%= f.text_area :self_introduction, class: "form-control self_introduction" %></td>
+            <td></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="field">
+            <td>ユーザーステータス</td>
+            <td></td>
+            <td></td>
+          </div>
+        </tr>
+        <tr>
+          <td>投稿レシピ名</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <div class="field">
+            <td></td>
+            <td><%= f.submit "編集内容を保存", class: 'btn btn-success' %></td>
+            <td></td>
+          </div>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,11 +1,17 @@
-<h2><strong>ジャンル・カテゴリ編集</strong></h2>
-
-<div class="genre-addition">
-  <%= form_with model: @genre, url: admin_genre_path(@genre), local: true do |f| %>
-    <div class="form-group">
-      <%= f.label 'ジャンル・カテゴリ名' %>
-      <%= f.text_field :name %>
-      <%= f.submit "編集内容を保存", class: "btn btn-sm btn-success" %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2><strong>ジャンル・カテゴリ編集</strong></h2>
     </div>
-  <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-11 offset-1">
+      <%= form_with model: @genre, url: admin_genre_path(@genre), local: true do |f| %>
+          <%= f.label 'ジャンル・カテゴリ名' %>
+          <%= f.text_field :name %>
+          <%= f.submit "編集内容を保存", class: "btn btn-sm btn-success" %>
+      <% end %>
+    </div>
+  </div>
 </div>

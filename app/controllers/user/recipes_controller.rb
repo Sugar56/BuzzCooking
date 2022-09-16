@@ -22,6 +22,13 @@ class User::RecipesController < ApplicationController
   end
 
   def check
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.destroy
+    redirect_to user_path(current_user.id)
   end
 
   private

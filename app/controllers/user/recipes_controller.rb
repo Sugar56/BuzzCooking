@@ -11,6 +11,7 @@ class User::RecipesController < ApplicationController
   end
 
   def index
+    @genres = Genre.all
     @recipes = Recipe.page(params[:page])
   end
 

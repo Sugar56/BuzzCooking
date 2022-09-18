@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2><%= @user.name %> のユーザページ</h2>
+      <h2><strong><span style="background-color: #FFDBC9;"><%= @user.name %> のユーザページ</span></strong></h2>
     </div>
   </div>
 
@@ -17,14 +17,14 @@
         </div>
         <div class="col-6" style="text-align:right;">
           <% if @user == current_user %>
-            <%= link_to "編集", edit_user_path(current_user.id) %>
-            <%= link_to "いいねした投稿", root_path %>
+            <%= link_to "編集", edit_user_path(current_user.id), class: "btn btn-sm btn-success" %>
+            <%= link_to "いいねした投稿", root_path, class: "btn btn-sm btn-success" %>
           <% end %>
         </div>
       </div>
 
       <div class="row">
-        <div class="col">
+        <div class="col" >
           <%= @user.self_introduction %>
         </div>
       </div>
@@ -34,7 +34,7 @@
   <div class="row">
     <div class="col">
       <div class="d-flex flex-row">
-        <h2><strong>投稿レシピ一覧</strong></h2>
+        <h2><strong><span style="background-color: #FFDBC9;">投稿レシピ一覧</span></strong></h2>
         (全<%= @recipes_all.count %>件)
       </div>
     </div>

@@ -7,6 +7,7 @@ class Recipe < ApplicationRecord
   belongs_to :genre
   has_many :ingredients, dependent: :destroy
   has_many :cooking_methods, dependent: :destroy
+  accepts_nested_attributes_for :ingredients, :cooking_methods, allow_destroy: true
 
   def get_image
     unless image.attached?

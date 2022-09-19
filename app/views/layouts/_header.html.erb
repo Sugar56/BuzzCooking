@@ -7,6 +7,10 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <%= form_tag({controller: "recipes", action: "index"}, method: :get) do %>
+          <%= text_field_tag :search %>
+          <%= submit_tag '検索' %>
+        <% end %>
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
           <div class = "text-white">ようこそ、<%= current_user.name %>様！</div>

@@ -17,6 +17,14 @@ class User::RecipesController < ApplicationController
   def index
     @genres = Genre.all
     @recipes = Recipe.page(params[:page])
+    if params[:search] == nil || ''
+      @recipes = Recipe.all
+    elsif params[:search] == ''
+      @recipes = Recipe.all
+    else
+      #部分検索
+      @Recipes = Recipes.where("body LIKE ? ",'%' + params[:search] + '%')
+    end
   end
 
   def show

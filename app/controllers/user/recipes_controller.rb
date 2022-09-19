@@ -7,6 +7,7 @@ class User::RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.user_id = current_user.id
     if @recipe.save
       redirect_to recipe_path(@recipe.id)
     else
@@ -18,12 +19,12 @@ class User::RecipesController < ApplicationController
     @genres = Genre.all
     @recipes = Recipe.page(params[:page])
     if params[:search] == nil || ''
-      @recipes = Recipe.all
+      @recipe_all = Recipe.all
     elsif params[:search] == ''
-      @recipes = Recipe.all
+      @recipes_all = Recipe.all
     else
       #部分検索
-      @Recipes = Recipes.where("body LIKE ? ",'%' + params[:search] + '%')
+      @Recipes_all = Recipes.where("body LIKE ? ",'%' + params[:search] + '%')
     end
   end
 

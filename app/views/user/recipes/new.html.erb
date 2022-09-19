@@ -29,58 +29,33 @@
           <td>材料</td>
           <td>
             <%= f.fields_for :ingredients do |t| %>
-            <div class="row row-cols-3">
-              <div class="col">
-                <%= f.text_field :name, class: "form-control", placeholder: "材料" %>
-              </div>
-              <div class="col">
-                <%= f.text_field :amount, class: "form-control", placeholder: "分量" %>
-              </div>
-              <div class="col">
-                <%= link_to_remove_association "削除", f, class: "btn btn-secondary btn-block" %>
-              </div>
-            </div>
+              <%= render "user/recipes/recipe_ingredient_fields", f: t %>
+            <% end %>
             <div class="row">
               <div class="col-md-auto">
                 <div id="detail-association-insertion-point"></div>
               </div>
             </div>
-              <%= link_to_add_association "+フォームを追加", f, :ingredients,
-              class: "btn btn-secondary btn-block",
-              data: {
-              association_insertion_node: '#detail-association-insertion-point',
-              association_insertion_method: 'after'
-              }%>
-            <% end %>
+            <%= link_to_add_association "+フォームを追加", f, :ingredients, partial: "recipe_ingredient_fields", class: "btn btn-secondary btn-block",data: {association_insertion_node: '#detail-association-insertion-point',association_insertion_method: 'after'} %>
           </td>
         </tr>
         <tr>
           <td>調理法</td>
           <td>
             <%= f.fields_for :cooking_methods do |t| %>
-            <div class="row">
-              <div class="col-2">
-                <%= f.text_field :step, class: "form-control", placeholder: "No." %>
-              </div>
-              <div class="col-7">
-                <%= f.text_area :cooking_explanation, class: "form-control", placeholder: "調理方法" %>
-              </div>
-              <div class="col-3">
-                <%= link_to_remove_association "削除", f, class: "btn btn-secondary btn-block" %>
-              </div>
-            </div>
+              <%= render "user/recipes/recipe_cooking_methods_fields", f: t %>
+            <% end %>
             <div class="row">
               <div class="col-md-auto">
-                <div id="detail-association-insertion-point"></div>
+                <div id="detail-association-insertion-point2"></div>
               </div>
             </div>
-              <%= link_to_add_association "+フォームを追加", f, :cooking_methods,
+              <%= link_to_add_association "+フォームを追加", f, :cooking_methods, partial: "recipe_cooking_methods_fields",
               class: "btn btn-secondary btn-block",
               data: {
-              association_insertion_node: '#detail-association-insertion-point',
+              association_insertion_node: '#detail-association-insertion-point2',
               association_insertion_method: 'after'
               }%>
-            <% end %>
           </td>
         </tr>
         <tr>

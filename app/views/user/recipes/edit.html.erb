@@ -1,2 +1,67 @@
-<h1>User::Recipes#edit</h1>
-<p>Find me in app/views/user/recipes/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2><strong><span style="background-color: #FFDBC9;">投稿レシピ編集</span></strong></h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-11 offset-1">
+      <%= form_with model: @recipe, url: recipe_path(@recipe.id), method: :patch, local: true do |f| %>
+      <table>
+        <tr>
+          <td>レシピ名</td>
+          <td><%= f.text_field :name, class: "form-control name" %></td>
+        </tr>
+        <tr>
+          <td>投稿画像</td>
+          <td><%= f.file_field :image, class: "form-control-file recipe_image", accept: "image/*"%></td>
+        </tr>
+        <tr>
+          <td valign="top" >レシピ説明</td>
+          <td><%= f.text_area :recipe_explanation, class: "form-control recipe_explanation" %></td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td valign="top" >材料</td>
+          <td>
+            <%= f.fields_for :ingredients do |t| %>
+              <%= render "user/recipes/recipe_ingredient_fields", f: t %>
+            <% end %>
+            <div id="detail-association-insertion-point"></div>
+            <div class="row justify-content-md-center">
+              <div class="col-md-auto">
+                <%= link_to_add_association "+フォームを追加", f, :ingredients, partial: "recipe_ingredient_fields", class: "btn btn-sm btn-secondary",data: {association_insertion_node: '#detail-association-insertion-point',association_insertion_method: 'after'} %>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" >調理法</td>
+          <td>
+            <%= f.fields_for :cooking_methods do |t| %>
+              <%= render "user/recipes/recipe_cooking_methods_fields", f: t %>
+            <% end %>
+            <div id="detail-association-insertion-point2"></div>
+            <div class="row justify-content-md-center">
+              <div class="col-md-auto">
+                <%= link_to_add_association "+フォームを追加", f, :cooking_methods, partial: "recipe_cooking_methods_fields", class: "btn btn-sm btn-secondary", data: { association_insertion_node: '#detail-association-insertion-point2', association_insertion_method: 'after' } %>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" >ポイント</td>
+          <td><%= f.text_area :point_explanation, class: "form-control point_explanation" %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= f.submit "投稿", class: "btn btn-sm btn-success" %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>

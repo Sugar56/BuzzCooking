@@ -23,7 +23,7 @@
           <h2><strong>レシピ詳細</strong></h2>
 
           <%= link_to "投稿編集", edit_recipe_path(@recipe.id), class: "btn btn-sm btn-success" %>
-          <%= link_to "投稿削除", root_path, class: "btn btn-sm btn-danger" %>
+          <%= link_to "投稿削除", recipe_path(@recipe.id), method: :delete, data: { confilm: "本当に退会しますか？" }, class: "btn btn-sm btn-danger" %>
 
         </div>
       </div>
@@ -81,7 +81,7 @@
               <tbody>
                 <tr>
                   <td><%= @recipe.ingredient.name %></td>
-                  <td><%= @recipe.ingredient_detail.amount %></td>
+                  <td><%= @recipe.ingredient.amount %></td>
                 </tr>
               </tbody>
             </table>

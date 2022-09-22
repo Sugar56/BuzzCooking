@@ -66,7 +66,12 @@
         <tr>
           <div class="field">
             <td>ユーザーステータス</td>
-            <td></td>
+            <td>
+              <%= f.radio_button :is_deleted, false %>
+              <%= f.label :is_deleted, "有効", value: false %>
+              <%= f.radio_button :is_deleted, true %>
+              <%= f.label :is_deleted, "利用停止", value: true %>
+            </td>
             <td></td>
           </div>
         </tr>

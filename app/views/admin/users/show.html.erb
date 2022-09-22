@@ -41,6 +41,16 @@
           <td><%= @user.self_introduction %></td>
         </tr>
         <tr>
+          <td>ユーザーステータス</td>
+          <td>
+            <% if @user.is_deleted %>
+              <div style="color:red;">利用停止</div>
+            <% else %>
+              <div style="color:green;">有効</div>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
           <td>投稿レシピ名</td>
           <td>
             <% @recipes.each do |recipe| %>
@@ -52,7 +62,7 @@
         </tr>
         <tr>
           <td></td>
-          <td><%= link_to "編集", edit_admin_user_path(@user.id), class: 'btn btn-success' %></td>
+          <td><%= link_to "編集", edit_admin_user_path(@user.id), class: 'btn btn-success',data: {"turbolinks"=>false} %></td>
         </tr>
       </table>
     </div>

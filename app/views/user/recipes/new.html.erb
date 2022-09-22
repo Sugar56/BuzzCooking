@@ -23,7 +23,10 @@
         </tr>
         <tr>
           <td>ジャンル</td>
-          <td></td>
+          <td>
+            <%= f.select :name, @genres, include_blank: "ジャンル選択" %>
+            <%= f.hidden_field @genres %>
+          </td>
         </tr>
         <tr>
           <td valign="top" >材料</td>

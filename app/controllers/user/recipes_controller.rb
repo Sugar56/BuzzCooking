@@ -3,6 +3,7 @@ class User::RecipesController < ApplicationController
     @recipe = Recipe.new
     @ingredients = @recipe.ingredients.build ##親モデル.子モデル.buildで子モデルのインスタンス作成
     @cooking_methods = @recipe.cooking_methods.build
+    @genres = Genre.all.map { |g| g.name }
   end
 
   def create

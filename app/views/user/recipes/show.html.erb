@@ -40,6 +40,7 @@
           <% else %>
             <%= link_to recipe_favorites_path(@recipe), method: :post do %>
               ♥<%= @recipe.favorites.count %>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -47,7 +48,7 @@
       <div class="col-sm-6">
         <div class="row">
           <div class="col">
-            <%= image_tag recipe.get_image, size: "200x200" %>
+            <%= image_tag @recipe.get_image, size: "200x200" %>
           </div>
         </div>
       </div>
@@ -70,29 +71,28 @@
 
         <div class="row">
           <div class="col">
-
             <table class="table">
               <thead>
                 <tr>
-                  <th><strong>材料</strong></th>
+                  <th><strong>材料</strong><%= @recipe.serving %></th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><%= @recipe.ingredient.name %></td>
-                  <td><%= @recipe.ingredient.amount %></td>
+                  <% @ingredients.each do |ingredient| %>
+                  <td><%= ingredient.name %></td>
+                  <td><%= ingredient.amount %></td>
+                  <% end %>
                 </tr>
               </tbody>
             </table>
-
           </div>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
-
           <table class="table">
             <thead>
               <tr>
@@ -102,11 +102,12 @@
             </thead>
             <tbody>
               <tr>
-                <td><%= @recipe.cooking_method.step %></td>
-                <td><%= @recipe.cooking_method.cooking_explanation %></td>
+                <% @cooking_methods.each do |cooking_method| %>
+                <td><%= cooking_method.step %></td>
+                <td><%= cooking_method.cooking_explanation %></td>
+                <% end %>
               </tr>
             </tbody>
-
           </table>
         </div>
       </div>
@@ -120,9 +121,9 @@
 
       <div class="row">
         <div class="col">
-          <p><strong>コメント欄</strong>(全<%= @recipe.post_comments.count %>件)</p>
+          <p><strong>コメント欄</strong>(全<%= @recipe.recipe_comments.count %>件)</p>
           <% @recipe.recipe_comments.each do |recipe_comment| %>
-            <%= image_tag post_comment.user.get_profile_image(50,50) %>
+            <%= image_tag recipe_comment.user.get_profile_image(50,50) %>
             <%= recipe_comment.user.name %>
             <%= recipe_comment.created_at.strftime('%Y/%m/%d') %><%= recipe_comment.comment %>
             <% if recipe_comment.user == current_user %>

@@ -24,8 +24,7 @@
         <tr>
           <td>ジャンル</td>
           <td>
-            <%= f.select :name, @genres, include_blank: "ジャンル選択" %>
-            <%= f.hidden_field @genres %>
+            <%= f.select :genre_id, @genres, include_blank: "ジャンル選択" %>
           </td>
         </tr>
         <tr>
@@ -38,7 +37,7 @@
             <div id="detail-association-insertion-point"></div>
             <div class="row justify-content-md-center">
               <div class="col-md-auto">
-                <%= link_to_add_association "+フォームを追加", f, :ingredients, partial: "recipe_ingredient_fields", class: "btn btn-sm btn-secondary",data: {association_insertion_node: '#detail-association-insertion-point',association_insertion_method: 'after'} %>
+                <%= link_to_add_association "+フォームを追加", f, :ingredients, partial: "recipe_ingredient_fields", class: "btn btn-sm btn-secondary",data: {association_insertion_node: '#detail-association-insertion-point',association_insertion_method: 'before'} %>
               </div>
             </div>
           </td>
@@ -52,7 +51,7 @@
             <div id="detail-association-insertion-point2"></div>
             <div class="row justify-content-md-center">
               <div class="col-md-auto">
-                <%= link_to_add_association "+フォームを追加", f, :cooking_methods, partial: "recipe_cooking_methods_fields", class: "btn btn-sm btn-secondary", data: { association_insertion_node: '#detail-association-insertion-point2', association_insertion_method: 'after' } %>
+                <%= link_to_add_association "+フォームを追加", f, :cooking_methods, partial: "recipe_cooking_methods_fields", class: "btn btn-sm btn-secondary", data: { association_insertion_node: '#detail-association-insertion-point2', association_insertion_method: 'before' } %>
               </div>
             </div>
           </td>

@@ -3,12 +3,16 @@ class User::RecipesController < ApplicationController
     @recipe = Recipe.new
     @ingredients = @recipe.ingredients.build ##親モデル.子モデル.buildで子モデルのインスタンス作成
     @cooking_methods = @recipe.cooking_methods.build
-    @genres = Genre.all.map { |g| g.name }
+    # @genres = Genre.all.map { |g| g.name }
+    @genres = Genre.all.map { |g| [g.name, g.id] }
+    # @genres = Genre.all
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
+
     @recipe.user_id = current_user.id
+    #byebug
     if @recipe.save
       redirect_to recipe_path(@recipe.id)
     else
@@ -32,7 +36,10 @@ class User::RecipesController < ApplicationController
   def show
     @genres = Genre.all
     @recipe = Recipe.find(params[:id])
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
+    @user = current_user
+    @ingredients = @recipe.ingredients
+    @cooking_methods = @recipe.cooking_methods
     @recipe_comment = RecipeComment.new
   end
 
@@ -53,7 +60,7 @@ class User::RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :image, :recipe_explanation, :point_explanation,
+    params.require(:recipe).permit(:name, :image, :serving, :genre_id, :recipe_explanation, :point_explanation,
                                   ingredients_attributes:[:name, :amount, :_destroy],
                                   cooking_methods_attributes:[:cooking_explanation, :image, :step, :_destroy])
   end

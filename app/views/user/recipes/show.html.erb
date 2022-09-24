@@ -25,7 +25,7 @@
         <div class="col" style="text-align:right;">
           <% if @user == current_user && @user.name != "guestuser" %>
             <%= link_to "投稿編集", edit_recipe_path(@recipe.id), class: "btn btn-sm btn-success" %>
-            <%= link_to "投稿削除", recipe_path(@recipe.id), method: :delete, data: { confilm: "本当に退会しますか？" }, class: "btn btn-sm btn-danger" %>
+            <%= link_to "投稿削除", recipe_path(@recipe.id), method: :delete, data: { confilm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %>
           <% end %>
         </div>
       </div>
@@ -122,16 +122,24 @@
       <div class="row"  style="margin-bottom: 30px;">
         <div class="col">
           <p><strong>コメント欄</strong>(全<%= @recipe.recipe_comments.count %>件)</p>
-          <% @recipe.recipe_comments.each do |recipe_comment| %>
-            <%= image_tag recipe_comment.user.get_profile_image(50,50) %>
-            <%= link_to user_path(recipe_comment.user_id) do %>
-              <%= recipe_comment.user.name %>
+          <table>
+            <% @recipe.recipe_comments.each do |recipe_comment| %>
+            <tr>
+              <td><%= image_tag recipe_comment.user.get_profile_image(50,50) %></td>
+              <td>
+                <%= link_to user_path(recipe_comment.user_id) do %>
+                  <%= recipe_comment.user.name %>
+                <% end %>
+              </td>
+              <td><%= recipe_comment.created_at.strftime('%Y/%m/%d') %> <%= recipe_comment.comment %></td>
+              <td>
+                <% if recipe_comment.user == current_user %>
+                  <%= link_to "削除", recipe_recipe_comment_path(recipe_comment.recipe, recipe_comment), method: :delete, class: "btn btn-sm btn-danger" %>
+                <% end %>
+              </td>
+            </tr>
             <% end %>
-            <%= recipe_comment.created_at.strftime('%Y/%m/%d') %> <%= recipe_comment.comment %>
-            <% if recipe_comment.user == current_user %>
-              <%= link_to "削除", recipe_recipe_comment_path(recipe_comment.recipe, recipe_comment), method: :delete, class: "btn btn-sm btn-danger" %>
-            <% end %>
-          <% end %>
+          </table>
         </div>
       </div>
 

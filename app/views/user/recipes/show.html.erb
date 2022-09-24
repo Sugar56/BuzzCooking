@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-top: 10px;">
   <div class="row">
     <div class="col-sm-3">
       <table class="table table-hover">
@@ -18,80 +18,86 @@
     </div>
 
     <div class="col-sm-9">
-      <div class="row">
+      <div class="row" style="margin-bottom: 10px;">
         <div class="col">
-          <h2><strong>レシピ詳細</strong></h2>
-
-          <%= link_to "投稿編集", edit_recipe_path(@recipe.id), class: "btn btn-sm btn-success" %>
-          <%= link_to "投稿削除", recipe_path(@recipe.id), method: :delete, data: { confilm: "本当に退会しますか？" }, class: "btn btn-sm btn-danger" %>
-
+          <h2><strong><span style="background-color: #FFDBC9;">レシピ詳細</span></strong></h2>
+        </div>
+        <div class="col" style="text-align:right;">
+          <% if @user == current_user && @user.name != "guestuser" %>
+            <%= link_to "投稿編集", edit_recipe_path(@recipe.id), class: "btn btn-sm btn-success" %>
+            <%= link_to "投稿削除", recipe_path(@recipe.id), method: :delete, data: { confilm: "本当に退会しますか？" }, class: "btn btn-sm btn-danger" %>
+          <% end %>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" style="margin-bottom: 10px;">
         <div class="col">
           <p><strong><%= @recipe.name %></strong></p>
         </div>
-        <div class="col">
-          <% if @recipe.favorited_by?(current_user) %>
-            <%= link_to recipe_favorites_path(@recipe), method: :delete, class: "text-danger" do %>
-              ♥<%= @recipe.favorites.count %>
-            <% end %>
-          <% else %>
-            <%= link_to recipe_favorites_path(@recipe), method: :post do %>
-              ♥<%= @recipe.favorites.count %>
+        <div class="col" style="text-align:right;">
+          <% if @user == current_user && @user.name != "guestuser" %>
+            <% if @recipe.favorited_by?(current_user) %>
+              <%= link_to recipe_favorites_path(@recipe), method: :delete, class: "text-danger" do %>
+                ♥<%= @recipe.favorites.count %>
+              <% end %>
+            <% else %>
+              <%= link_to recipe_favorites_path(@recipe), method: :post do %>
+                ♥<%= @recipe.favorites.count %>
+              <% end %>
             <% end %>
           <% end %>
         </div>
       </div>
 
-      <div class="col-sm-6">
-        <div class="row">
-          <div class="col">
-            <%= image_tag @recipe.get_image, size: "200x200" %>
+      <div class="row" style="margin-bottom: 50px;">
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col">
+              <%= image_tag @recipe.get_image, size: "350x350" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="row" style="margin-bottom: 30px;">
+            <div class="col">
+              <p style="margin-bottom: 10px;"><strong>レシピ説明</strong></p>
+              <%= @recipe.recipe_explanation %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col" style="margin-bottom: 30px;">
+              <%= link_to user_path(@recipe.user_id) do %>
+                <%= @recipe.user.name %>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th><strong>材料</strong><%= @recipe.serving %></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <% @ingredients.each do |ingredient| %>
+                    <td><%= ingredient.name %></td>
+                    <td><%= ingredient.amount %></td>
+                    <% end %>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-6">
-        <div class="row">
-          <div class="col">
-            <p><strong>レシピ説明</strong></p>
-            <%= @recipe.recipe_explanation %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <%= link_to user_path(@recipe.user.id) do %>
-              <%= @recipe.user.name %>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th><strong>材料</strong><%= @recipe.serving %></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <% @ingredients.each do |ingredient| %>
-                  <td><%= ingredient.name %></td>
-                  <td><%= ingredient.amount %></td>
-                  <% end %>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
+      <div class="row" style="margin-bottom: 20px;">
         <div class="col">
           <table class="table">
             <thead>
@@ -112,28 +118,35 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" style="margin-bottom: 50px;">
         <div class="col">
           <p><strong>ポイント</strong></p>
           <%= @recipe.point_explanation %>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row"  style="margin-bottom: 30px;">
         <div class="col">
           <p><strong>コメント欄</strong>(全<%= @recipe.recipe_comments.count %>件)</p>
           <% @recipe.recipe_comments.each do |recipe_comment| %>
             <%= image_tag recipe_comment.user.get_profile_image(50,50) %>
-            <%= recipe_comment.user.name %>
-            <%= recipe_comment.created_at.strftime('%Y/%m/%d') %><%= recipe_comment.comment %>
+            <%= link_to user_path(recipe_comment.user_id) do %>
+              <%= recipe_comment.user.name %>
+            <% end %>
+            <%= recipe_comment.created_at.strftime('%Y/%m/%d') %> <%= recipe_comment.comment %>
             <% if recipe_comment.user == current_user %>
-              <%= link_to "削除", recipe_recipe_comment_path(recipe_comment.recipe, recipe_comment), method: :delete %>
+              <%= link_to "削除", recipe_recipe_comment_path(recipe_comment.recipe, recipe_comment), method: :delete, class: "btn btn-sm btn-danger" %>
             <% end %>
           <% end %>
-          <%= form_with model: [@recipe, @recipe_comment] do |f| %>
-            <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-            <%= f.submit "送信" %>
-          <% end %>
+        </div>
+      </div>
+
+      <div class="row" style="margin-bottom: 50px;">
+        <div class="col">
+        <%= form_with model: [@recipe, @recipe_comment] do |f| %>
+          <%= f.text_area :comment, rows: '3', style: "width:100%", placeholder: "コメントをここに" %>
+          <%= f.submit "送信" %>
+        <% end %>
         </div>
       </div>
     </div>

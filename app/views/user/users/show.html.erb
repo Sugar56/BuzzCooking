@@ -1,17 +1,17 @@
-<div class="container">
-  <div class="row">
+<div class="container" style="padding-top: 10px;">
+  <div class="row" style="margin-bottom: 10px;">
     <div class="col">
       <h2><strong><span style="background-color: #FFDBC9;"><%= @user.name %> のユーザページ</span></strong></h2>
     </div>
   </div>
 
-  <div class="row offset-1">
+  <div class="row offset-1" style="margin-bottom: 50px;">
     <div class="col-sm-4">
       <%= image_tag @user.get_profile_image(150,150) %>
     </div>
 
     <div class="col-sm-8">
-      <div class="row">
+      <div class="row" style="margin-bottom: 20px;">
         <div class="col-6">
           <%= @user.name %>
         </div>
@@ -31,7 +31,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" style="margin-bottom: 10px;">
     <div class="col">
       <div class="d-flex flex-row">
         <h4><strong>投稿レシピ一覧</strong></h4>
@@ -48,21 +48,40 @@
   <div class="row">
     <div class="col">
       <div class="d-flex flex-row">
-        <%= @recipes.each do |recipe| %>
-          <%= image_tag recipe.get_image, size: "100x150" %>
-          <strong><%= link_to recipe.name, recipe_path(recipe.id) %></strong>
-          <% if recipe.favorited_by?(current_user) %>
-              <%= link_to recipe_favorites_path(recipe), method: :delete, class: "text-danger" do %>
-                ♥<%= recipe.favorites.count %>
+        <% @recipes.each do |recipe| %>
+        <div class="col-sm-3">
+          <div class="row">
+            <div class="col">
+              <%= image_tag recipe.get_image, size: "200x200" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="row" style="margin-bottom: 50px;">
+            <div class="col">
+              <strong><%= link_to recipe.name, recipe_path(recipe.id) %></strong>
+            </div>
+
+            <div class="col">
+              <% if recipe.favorited_by?(current_user) %>
+                <%= link_to recipe_favorites_path(recipe), method: :delete, class: "text-danger" do %>
+                  ♥<%= recipe.favorites.count %>
+                <% end %>
+              <% else %>
+                <%= link_to recipe_favorites_path(recipe), method: :post do %>
+                  ♥<%= recipe.favorites.count %>
+                <% end %>
               <% end %>
-            <% else %>
-            <p>
-              <%= link_to recipe_favorites_path(recipe), method: :post do %>
-                ♥<%= recipe.favorites.count %>
-              <% end %>
-            </p>
-          <% end %>
-          <%= recipe.recipe_explanation %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <%= recipe.recipe_explanation %>
+            </div>
+          </div>
+        </div>
         <% end %>
       </div>
       <%= paginate @recipes %>

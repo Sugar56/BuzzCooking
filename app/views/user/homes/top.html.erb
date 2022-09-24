@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-top: 10px;">
   <div class="row">
     <div class="col-sm-3">
       <table class="table table-hover" style="background-color: #FFFFBB;">
@@ -18,9 +18,9 @@
     </div>
 
     <div class="col-sm-9">
-      <div class="row">
-        <div class="col">
-          <p style="text-align:center;" class="bg">
+      <div class="row" style="margin-bottom: 50px;">
+        <div class="col bg">
+          <p style="text-align: center; background-color: rgba( 0, 0, 0, 0.5); color: #fff; padding: 50px;">
             ようこそ、BuzzCookingへ！</br>
             このサイトは、料理レシピのECサイトになります。</br>
             ゲストの方でも投稿レシピの閲覧はできますが、</br>
@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" style="margin-bottom: 10px;">
         <div class="col">
           <h2><strong><span style="background-color: #FFDBC9;">新着レシピ</span></strong></h2>
         </div>
@@ -42,9 +42,11 @@
         <div class="col">
           <div class="d-flex flex-row">
             <% @recipes.each do |recipe| %>
-              <%= image_tag recipe.get_image, size: "100x150" %>
-              <div><strong><%= link_to recipe.name, recipe_path(recipe.id) %></strong></div>
-              <div><strong><%= recipe.recipe_explanation %></strong></div>
+            <div class="d-flex flex-column bd-highlight" style="margin-right: 10px; margin-bottom: 50px;">
+              <%= image_tag recipe.get_image, size: "200x200" %>
+              <p><strong><%= link_to recipe.name, recipe_path(recipe.id) %></strong></p>
+              <%= recipe.recipe_explanation %>
+            </div>
             <% end %>
           </div>
         </div>

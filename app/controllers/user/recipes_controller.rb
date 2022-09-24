@@ -22,6 +22,7 @@ class User::RecipesController < ApplicationController
 
   def index
     @genres = Genre.all
+    @user = current_user
     @recipes = Recipe.page(params[:page])
     if params[:search] == nil || ''
       @recipe_all = Recipe.all
@@ -45,6 +46,16 @@ class User::RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
+    @genres = Genre.all.map { |g| [g.name, g.id] }
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    if @recipe.update(recipe_params)
+      redirect_to recipe_path(@recipe), notice: "レシピ情報を編集しました"
+    else
+      render "edit"
+    end
   end
 
   def check

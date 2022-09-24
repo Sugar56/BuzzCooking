@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-top: 10px;">
   <div class="row">
     <div class="col">
       <h2><strong><span style="background-color: #FFDBC9;">ユーザー情報編集</span></strong></h2>
@@ -6,7 +6,7 @@
   </div>
 
   <div class="row">
-    <div class="col-11 offset-1">
+    <div class="col-11 offset-1" style="margin-bottom: 50px;">
       <%= form_with model: @user, url: user_path(@user), method: :patch, local:true do |f| %>
       <table>
         <tr>

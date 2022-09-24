@@ -1,12 +1,12 @@
-<div class="container">
-  <div class="row">
+<div class="container" style="padding-top: 10px;">
+  <div class="row" style="margin-bottom: 10px;">
     <div class="col">
       <h2><strong><span style="background-color: #FFDBC9;">投稿レシピ編集</span></strong></h2>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-11 offset-1">
+    <div class="col-11 offset-1" style="margin-bottom: 50px;">
       <%= form_with model: @recipe, url: recipe_path(@recipe.id), method: :patch, local: true do |f| %>
       <table>
         <tr>
@@ -23,18 +23,21 @@
         </tr>
         <tr>
           <td>ジャンル</td>
-          <td></td>
+          <td>
+            <%= f.select :genre_id, @genres, class: "form-control genre_id", include_blank: "ジャンル選択" %>
+          </td>
         </tr>
         <tr>
           <td valign="top" >材料</td>
           <td>
+            <%= f.select :serving, [['1人前',1], ['2人前',2], ['3人前',3], ['4人前',4], ['5人前',5], ['6人前',6], ['7人前',7], ['8人前',8], ['9人前',9], ['10人前',10]], include_blank: "個数選択" %>
             <%= f.fields_for :ingredients do |t| %>
               <%= render "user/recipes/recipe_ingredient_fields", f: t %>
             <% end %>
             <div id="detail-association-insertion-point"></div>
             <div class="row justify-content-md-center">
               <div class="col-md-auto">
-                <%= link_to_add_association "+フォームを追加", f, :ingredients, partial: "recipe_ingredient_fields", class: "btn btn-sm btn-secondary",data: {association_insertion_node: '#detail-association-insertion-point',association_insertion_method: 'after'} %>
+                <%= link_to_add_association "+フォームを追加", f, :ingredients, partial: "recipe_ingredient_fields", class: "btn btn-sm btn-secondary",data: {association_insertion_node: '#detail-association-insertion-point',association_insertion_method: 'before'} %>
               </div>
             </div>
           </td>
@@ -48,7 +51,7 @@
             <div id="detail-association-insertion-point2"></div>
             <div class="row justify-content-md-center">
               <div class="col-md-auto">
-                <%= link_to_add_association "+フォームを追加", f, :cooking_methods, partial: "recipe_cooking_methods_fields", class: "btn btn-sm btn-secondary", data: { association_insertion_node: '#detail-association-insertion-point2', association_insertion_method: 'after' } %>
+                <%= link_to_add_association "+フォームを追加", f, :cooking_methods, partial: "recipe_cooking_methods_fields", class: "btn btn-sm btn-secondary", data: { association_insertion_node: '#detail-association-insertion-point2', association_insertion_method: 'before' } %>
               </div>
             </div>
           </td>

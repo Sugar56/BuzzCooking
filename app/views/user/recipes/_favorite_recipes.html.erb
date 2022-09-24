@@ -1,0 +1,31 @@
+<% favorite_recipes.each do |favorite_recipe| %>
+  <div class="col-sm-4" style="margin-bottom: 10px;">
+    <%= image_tag favorite_recipe.get_image, size: "200x200" %>
+  </div>
+
+  <div class="col-sm-8">
+    <div class="row" style="margin-bottom: 30px;">
+      <div class="col-6">
+        <strong><%= link_to favorite_recipe.name, recipe_path(favorite_recipe.id) %></strong>
+      </div>
+      <div class="col-6" style="text-align: right;">
+        <% if user == current_user && user.name != "guestuser" %>
+          <div id="favorite_buttons_<%= favorite_recipe.id %>"></div>
+          <%= render "user/favorites/favorite", recipe: favorite_recipe %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row" style="margin-bottom: 50px;">
+      <div class="col">
+        <%= favorite_recipe.recipe_explanation %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <%= favorite_recipe.user.name %>
+      </div>
+    </div>
+  </div>
+<% end %>

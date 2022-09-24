@@ -24,7 +24,11 @@ Rails.application.routes.draw do
   scope module: :user do
     root to: "homes#top"
     get "/about" => "homes#about"
-    resources :users, only: [:show, :edit, :check, :update, :withdraw]
+    resources :users, only: [:show, :edit, :check, :update, :withdraw] do
+      member do
+        get :favorites
+      end
+    end
     get "/users/check" => "users#check"
     patch "users/withdraw" => "users#withdraw"
     resources :recipes, only: [:new, :index, :show, :edit, :create, :update, :destroy] do

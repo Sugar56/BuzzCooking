@@ -1,0 +1,12 @@
+<div class="container" style="padding-top: 10px;">
+  <div class="row" style="margin-bottom: 10px;">
+    <div class="col d-flex flex-row">
+      <h2><strong><span style="background-color: #FFDBC9;">お気に入りレシピ一覧</span></strong></h2>
+      (全<%= @recipes.count %>件)
+    </div>
+  </div>
+
+  <div class="row offset-1" style="padding-bottom: 50px;">
+    <%= render partial: "user/recipes/favorite_recipes", locals: { favorite_recipes: @recipes, user: @user} %>
+  </div>
+</div>

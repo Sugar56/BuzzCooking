@@ -21,6 +21,12 @@ class User::UsersController < ApplicationController
   def check
   end
 
+  def favorites
+    @user = User.find(params[:id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:recipe_id)
+    @recipes = Recipe.find(favorites)
+  end
+
   def withdraw
     @user = current_user
     @user.update(is_deleted: true)

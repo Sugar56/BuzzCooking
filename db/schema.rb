@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_13_104754) do
+ActiveRecord::Schema.define(version: 2022_09_22_105659) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -74,16 +74,10 @@ ActiveRecord::Schema.define(version: 2022_09_13_104754) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "ingredient_details", force: :cascade do |t|
-    t.integer "recipe_id"
-    t.integer "ingredient_id"
-    t.integer "amount"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "ingredients", force: :cascade do |t|
+    t.integer "recipe_id"
     t.string "name"
+    t.string "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -105,6 +99,7 @@ ActiveRecord::Schema.define(version: 2022_09_13_104754) do
     t.text "point_explanation"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "serving"
   end
 
   create_table "users", force: :cascade do |t|

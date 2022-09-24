@@ -1,12 +1,20 @@
-<div class="container">
+<div class="container" style="padding-top: 10px;">
   <div class="row">
     <div class="col">
-      <h2><strong>ユーザー情報編集</strong></h2>
+      <h2><strong><span style="background-color: #FFDBC9;">ユーザー情報編集</span></strong></h2>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-11 offset-1">
+    <div class="col-11 offset-1" style="margin-bottom: 50px;">
+      <% if @user.errors.any? %>
+        <%= @user.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
       <%= form_with model: @user, url: user_path(@user), method: :patch, local:true do |f| %>
       <table>
         <tr>
@@ -69,7 +77,6 @@
           <div class="field">
             <td></td>
             <td><%= f.submit "編集内容を保存", class: 'btn btn-success' %></td>
-            <td><%= link_to "退会する", users_check_path, class: 'btn btn-danger' %></td>
           </div>
         </tr>
       </table>

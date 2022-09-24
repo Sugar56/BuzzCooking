@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "homes#top"
-    resources :genres, only: [:index, :edit, :create, :update]
+    resources :genres, only: [:index, :edit, :create, :update, :destroy]
     resources :recipes, only: [:index, :show, :destroy]
     get "/check" => "recipes#check"
     resources :users, only: [:show, :edit, :update]
@@ -24,7 +24,11 @@ Rails.application.routes.draw do
   scope module: :user do
     root to: "homes#top"
     get "/about" => "homes#about"
-    resources :users, only: [:show, :edit, :check, :update, :withdraw]
+    resources :users, only: [:show, :edit, :check, :update, :withdraw] do
+      member do
+        get :favorites
+      end
+    end
     get "/users/check" => "users#check"
     patch "users/withdraw" => "users#withdraw"
     resources :recipes, only: [:new, :index, :show, :edit, :create, :update, :destroy] do

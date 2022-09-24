@@ -1,12 +1,12 @@
-<div class="container">
-  <div class="row">
+<div class="container" style="padding-top: 10px;">
+  <div class="row" style="margin-bottom: 10px;">
     <div class="col">
-      <h2><strong>新規登録</strong></h2>
+      <h2><strong><span style="background-color: #FFDBC9;">新規登録</span></strong></h2>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-11 offset-1">
+    <div class="col-11 offset-1" style="margin-bottom: 50px;">
       <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
         <%= render "user/shared/error_messages", resource: resource %>
 
@@ -111,13 +111,13 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" style="margin-bottom: 10px;">
     <div class="col">
-      <h2><strong>既に登録済みの方</strong></h2>
+      <h2><strong><span style="background-color: #FFDBC9;">既に登録済みの方</span></strong></h2>
     </div>
   </div>
   <div class="row">
-    <div class="col-11 offset-1">
+    <div class="col-11 offset-1" style="margin-bottom: 50px;">
     <%= link_to "こちら", new_user_session_path %> からログインしてください。
     </div>
   </div>

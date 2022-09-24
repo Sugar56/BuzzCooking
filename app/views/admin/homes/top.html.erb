@@ -1,12 +1,12 @@
-<div class="container">
-  <div class="row">
+<div class="container" style="padding-top: 10px;">
+  <div class="row" style="margin-bottom: 10px;">
     <div class="col">
-      <h2><strong>ユーザー一覧</strong></h2>
+      <h2><strong><span style="background-color: #FFDBC9;">ユーザー一覧</span></strong></h2>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-11 offset-1">
+    <div class="col-11 offset-1" style="margin-bottom: 50px;">
       <table class="table">
         <thead>
           <tr>
@@ -30,7 +30,7 @@
             <td><%= user.email %></td>
             <td>
               <% if user.is_deleted %>
-                <div style="color:red;">退会</div>
+                <div style="color:red;">利用停止</div>
               <% else %>
                 <div style="color:green;">有効</div>
               <% end %>

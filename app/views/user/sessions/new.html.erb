@@ -1,17 +1,17 @@
-<div class="container">
-  <div class="row">
+<div class="container" style="padding-top: 10px;">
+  <div class="row" style="margin-bottom: 10px;">
     <div class="col">
-      <h2><strong>ログイン</strong></h2>
+      <h2><strong><span style="background-color: #FFDBC9;">ログイン</span></strong></h2>
     </div>
   </div>
 
   <div class="row">
     <div class="col-11 offset-1">
-      <p><strong>ユーザーの方はこちらからログイン</strong></p>
+      <p><strong><span style="background-color: #FFDBC9;">ユーザーの方はこちらからログイン</span></strong></p>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" style="margin-bottom: 30px;">
     <div class="col-10 offset-2">
       <%= form_with model: @user, url: user_session_path, local: true do |f| %>
         <table>
@@ -39,13 +39,13 @@
   </div>
 
   <div class="row">
-    <div class="col-11 offset-1">
-      <p><strong>ユーザー登録がお済みでない方</strong></p>
+    <div class="col-11 offset-1" style="margin-bottom: 10px;">
+      <p><strong><span style="background-color: #FFDBC9;">ユーザー登録がお済みでない方</span></strong></p>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-10 offset-2">
+    <div class="col-10 offset-2" style="margin-bottom: 50px;">
       <%= link_to "こちら", new_user_registration_path %> から新規登録を行ってください。
     </div>
   </div>

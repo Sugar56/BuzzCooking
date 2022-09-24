@@ -9,6 +9,16 @@ class User < ApplicationRecord
   has_many :recipe_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :last_name_kana, presence: true
+  validates :first_name_kana, presence: true
+  validates :address, presence: true
+  validates :telephone_number, presence: true
+  validates :email, presence: true
+  validates :name, presence: true, length: { minimum: 2, maximum: 20 }
+  validates :self_introduction, presence: true, length: { maximum: 50 }
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

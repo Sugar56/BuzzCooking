@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "homes#top"
-    resources :genres, only: [:index, :edit, :create, :update]
+    resources :genres, only: [:index, :edit, :create, :update, :destroy]
     resources :recipes, only: [:index, :show, :destroy]
     get "/check" => "recipes#check"
     resources :users, only: [:show, :edit, :update]

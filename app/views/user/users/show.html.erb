@@ -45,37 +45,37 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" style="padding-bottom: 50px;">
     <div class="col">
-      <div class="d-flex flex-row">
+      <div class="d-flex flex-wrap">
         <% @recipes.each do |recipe| %>
-        <div class="col-sm-3">
-          <div class="row">
-            <div class="col">
-              <%= image_tag recipe.get_image, size: "200x200" %>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-3">
-          <div class="row" style="margin-bottom: 50px;">
-            <div class="col">
-              <strong><%= link_to recipe.name, recipe_path(recipe.id) %></strong>
-            </div>
-
-            <div class="col">
-              <div id="favorite_buttons_<%= recipe.id %>">
-                <%= render "user/favorites/favorite", recipe: recipe %>
+          <div class="col-sm-3 float-left" style="margin-bottom: 20px;">
+            <div class="row">
+              <div class="col">
+                <%= image_tag recipe.get_image, size: "200x200" %>
               </div>
             </div>
           </div>
 
-          <div class="row">
-            <div class="col">
-              <%= recipe.recipe_explanation %>
+          <div class="col-sm-3 float-right">
+            <div class="row" style="margin-bottom: 50px;">
+              <div class="col">
+                <strong><%= link_to recipe.name, recipe_path(recipe.id) %></strong>
+              </div>
+
+              <div class="col">
+                <div id="favorite_buttons_<%= recipe.id %>">
+                  <%= render "user/favorites/favorite", recipe: recipe %>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col text-break">
+                <%= recipe.recipe_explanation %>
+              </div>
             </div>
           </div>
-        </div>
         <% end %>
       </div>
       <%= paginate @recipes %>

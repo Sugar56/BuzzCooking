@@ -10,8 +10,9 @@
       </div>
       <div class="col-6" style="text-align: right;">
         <% if user == current_user && user.name != "guestuser" %>
-          <div id="favorite_buttons_<%= favorite_recipe.id %>"></div>
-          <%= render "user/favorites/favorite", recipe: favorite_recipe %>
+          <div id="favorite_buttons_<%= favorite_recipe.id %>">
+            <%= render "user/favorites/favorite", recipe: favorite_recipe %>
+          </div>
         <% end %>
       </div>
     </div>

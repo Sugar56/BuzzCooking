@@ -1,12 +1,12 @@
-<div class="container">
-  <div class="row">
+<div class="container" style="padding-top: 10px;">
+  <div class="row" style="margin-bottom: 10px;">
     <div class="col">
-      <h2><strong>投稿レシピ一覧</strong></h2>
+      <h2><strong><span style="background-color: #FFDBC9;">投稿レシピ一覧</span></strong></h2>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-11 offset-1">
+    <div class="col-11 offset-1" style="margin-bottom: 50px;">
       <table class="table">
         <thead>
           <tr>
@@ -19,7 +19,6 @@
           <% @recipes.each do |recipe| %>
           <tr>
             <td><%= recipe.id %></td>
-            <td></td>
             <td>
               <%= link_to admin_recipe_path(recipe.id) do %>
                 <%= recipe.name %>

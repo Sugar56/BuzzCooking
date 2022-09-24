@@ -1,12 +1,12 @@
-<div class="container">
-  <div class="row">
+<div class="container" style="padding-top: 10px;">
+  <div class="row" style="margin-bottom: 10px;">
     <div class="col">
       <h2><strong><span style="background-color: #FFDBC9;">ジャンル・カテゴリ編集</span></strong></h2>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-11 offset-1">
+    <div class="col-11 offset-1" style="margin-bottom: 50px;">
       <%= form_with model: @genre, url: admin_genre_path(@genre), local: true do |f| %>
           <%= f.label 'ジャンル・カテゴリ名' %>
           <%= f.text_field :name %>

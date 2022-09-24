@@ -1,12 +1,12 @@
-<div class="container">
-  <div class="row">
+<div class="container" style="padding-top: 10px;">
+  <div class="row" style="margin-bottom: 10px;">
     <div class="col">
       <h2><strong><span style="background-color: #FFDBC9;">ジャンルカテゴリ一覧・追加</span></strong></h2>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-11 offset-1">
+    <div class="col-11 offset-1" style="margin-bottom: 30px;">
       <%= form_with model: @genre, url: admin_genres_path, method: :post, local: true do |f| %>
         <div class="form-group">
           <%= f.label 'ジャンル・カテゴリ名' %>
@@ -18,7 +18,7 @@
   </div>
 
   <div class="row">
-    <div class="col-3 offset-1">
+    <div class="col-3 offset-1" style="margin-bottom: 50px;">
       <table class="table table-hover">
         <thead>
           <tr>

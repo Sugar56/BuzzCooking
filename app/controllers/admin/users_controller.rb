@@ -1,7 +1,8 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_admin!
   def show
     @user = User.find(params[:id])
-    @recipes = @user.recipes.all
+    @recipes = @user.recipes
   end
 
   def edit

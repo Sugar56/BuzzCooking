@@ -10,7 +10,11 @@ class User::RecipeCommentsController < ApplicationController
 
   def destroy
     RecipeComment.find(params[:id]).destroy
-    redirect_to recipe_path(params[:recipe_id])
+    if current_admin.present?
+      redirect_to admin_recipe_path(params[:recipe_id])
+    else
+      redirect_to recipe_path(params[:recipe_id])
+    end
   end
 
   private

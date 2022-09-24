@@ -55,7 +55,7 @@
           <td>
             <% @recipes.each do |recipe| %>
               <%= link_to admin_recipe_path(@user.id) do %>
-                <%= @user.recipe.name %>
+                <%= recipe.name %>
               <% end %>
             <% end %>
           </td>

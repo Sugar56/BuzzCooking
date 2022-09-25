@@ -122,30 +122,15 @@
       <div class="row"  style="margin-bottom: 30px;">
         <div class="col">
           <p><strong>コメント欄</strong>(全<%= @recipe.recipe_comments.count %>件)</p>
-          <table>
-            <% @recipe.recipe_comments.each do |recipe_comment| %>
-            <tr>
-              <td><%= image_tag recipe_comment.user.get_profile_image(50,50) %></td>
-              <td>
-                <%= link_to user_path(recipe_comment.user_id) do %>
-                  <%= recipe_comment.user.name %>
-                <% end %>
-              </td>
-              <td><%= recipe_comment.created_at.strftime('%Y/%m/%d') %> <%= recipe_comment.comment %></td>
-              <td>
-                <% if recipe_comment.user == current_user %>
-                  <%= link_to "削除", recipe_recipe_comment_path(recipe_comment.recipe, recipe_comment), method: :delete, class: "btn btn-sm btn-danger" %>
-                <% end %>
-              </td>
-            </tr>
-            <% end %>
-          </table>
+          <div id="comments-area">
+            <%= render "user/recipe_comments/comment", recipe: @recipe %>
+          </div>
         </div>
       </div>
 
       <div class="row" style="margin-bottom: 50px;">
         <div class="col">
-        <%= form_with model: [@recipe, @recipe_comment] do |f| %>
+        <%= form_with(model: [@recipe, @recipe_comment], local: false, remote: true) do |f| %>
           <%= f.text_area :comment, rows: '3', style: "width:100%", placeholder: "コメントをここに" %>
           <%= f.submit "送信" %>
         <% end %>

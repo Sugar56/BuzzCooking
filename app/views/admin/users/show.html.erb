@@ -50,16 +50,16 @@
             <% end %>
           </td>
         </tr>
+        <% @recipes.each do |recipe| %>
         <tr>
           <td>投稿レシピ名</td>
           <td>
-            <% @recipes.each do |recipe| %>
-              <%= link_to admin_recipe_path(@user.id) do %>
-                <%= recipe.name %>
-              <% end %>
+            <%= link_to admin_recipe_path(@user.id) do %>
+              <%= recipe.name %>
             <% end %>
           </td>
         </tr>
+        <% end %>
         <tr>
           <td></td>
           <td><%= link_to "編集", edit_admin_user_path(@user.id), class: 'btn btn-success',data: {"turbolinks"=>false} %></td>

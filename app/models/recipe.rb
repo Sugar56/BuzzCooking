@@ -11,6 +11,7 @@ class Recipe < ApplicationRecord
 
   validates :name, presence: true
   validates :recipe_explanation, presence: true
+  validates :serving, presence: true
   validates :point_explanation, presence: true
 
   def get_image

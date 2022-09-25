@@ -9,6 +9,7 @@ class User::RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
+    @genres = Genre.all.map { |g| [g.name, g.id] }
     if @recipe.save
       redirect_to recipe_path(@recipe.id)
     else
@@ -46,6 +47,7 @@ class User::RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
+    @genres = Genre.all.map { |g| [g.name, g.id] }
     if @recipe.update(recipe_params)
       redirect_to recipe_path(@recipe), notice: "レシピ情報を編集しました"
     else

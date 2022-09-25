@@ -1,4 +1,5 @@
 class User::RecipesController < ApplicationController
+  before_action :authenticate_user!
   def new
     @recipe = Recipe.new
     @ingredients = @recipe.ingredients.build ##親モデル.子モデル.buildで子モデルのインスタンス作成

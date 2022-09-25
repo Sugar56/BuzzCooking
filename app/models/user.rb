@@ -21,16 +21,23 @@ class User < ApplicationRecord
 
   def get_profile_image(width, height)
     unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      file_path = Rails.root.join('public/no_image.jpg')
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
   def self.guest
-    find_or_create_by!(last_name: 'guest', first_name: 'user', last_name_kana: 'guest', first_name_kana: 'user', address: 'Tokyo', telephone_number: '00000000000', email: 'guest@example.com', name: 'guestuser', self_introduction: 'guest') do |user|
+    find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
-      user.name = "guestuser"
+      user.last_name = "ゲスト"
+      user.first_name = "ユーザー"
+      user.last_name_kana = "ゲスト"
+      user.first_name_kana = "ユーザー"
+      user.address = "東京都"
+      user.telephone_number = "000000000"
+      user.name = "guestus"
+      user.self_introduction = "ゲストです。"
     end
   end
 end

@@ -50,6 +50,13 @@
               <%= image_tag @recipe.get_image, size: "350x350" %>
             </div>
           </div>
+          <div class="row">
+            <div class="col">
+              <% @recipe.tags.each do |tag| %>
+                <%= tag.name %>
+              <% end %>
+            </div>
+          </div>
         </div>
 
         <div class="col-sm-6">

@@ -2,7 +2,7 @@ class User::UsersController < ApplicationController
   before_action :authenticate_user!
   def show
     @user = User.find(params[:id])
-    @recipes_all = Recipe.where(user_id: current_user.id)
+    @recipes_all = Recipe.where(user_id: params[:id])
     @recipes = @recipes_all.page(params[:page])
   end
 

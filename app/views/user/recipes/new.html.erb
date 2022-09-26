@@ -16,9 +16,9 @@
         </ul>
       <% end %>
       <%= form_with model: @recipe, url: recipes_path, method: :post, local: true do |f| %>
-      <table>
+      <table class="table">
         <tr>
-          <td>レシピ名</td>
+          <td class="col-2">レシピ名</td>
           <td><%= f.text_field :name %></td>
         </tr>
         <tr>
@@ -34,6 +34,21 @@
           <td>
             <%= f.select :genre_id, @genres, include_blank: "ジャンル選択" %>
           </td>
+        </tr>
+        <tr>
+          <td>タグ</td>
+          <div class="row row-cols-auto">
+            <td>
+              <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+                <%= tag.label do %>
+                  <div class="col">
+                    <%= tag.check_box %>
+                    <%= tag.text %>
+                  </div>
+                <% end %>
+              <% end %>
+            </td>
+          </div>
         </tr>
         <tr>
           <td valign="top" >材料</td>

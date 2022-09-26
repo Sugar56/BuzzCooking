@@ -37,7 +37,11 @@ Rails.application.routes.draw do
       resources :cooking_methods, only: [:create, :destroy]
       resources :ingredients, only: [:create, :destroy]
       resources :ingredient_details, only: [:create, :destroy]
+      collection do
+        get 'search'
+      end
     end
+    get 'tags/index'
     get "users/check" => "recipes#check"
   end
 

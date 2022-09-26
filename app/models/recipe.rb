@@ -8,6 +8,8 @@ class Recipe < ApplicationRecord
   has_many :ingredients, dependent: :destroy
   has_many :cooking_methods, dependent: :destroy
   accepts_nested_attributes_for :ingredients, :cooking_methods, allow_destroy: true
+  has_many :recipe_tags, dependent: :destroy
+  has_many :tags, through: :recipe_tags, dependent: :destroy
 
   validates :name, presence: true
   validates :recipe_explanation, presence: true

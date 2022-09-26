@@ -21,15 +21,7 @@ class User::RecipesController < ApplicationController
   def index
     @genres = Genre.all
     @user = current_user
-    @recipes = Recipe.page(params[:page])
-    if params[:search] == nil || ''
-      @recipe_all = Recipe.all
-    elsif params[:search] == ''
-      @recipes_all = Recipe.all
-    else
-      #部分検索
-      @Recipes_all = Recipes.where("body LIKE ? ",'%' + params[:search] + '%')
-    end
+    @recipes = params[:name].present? ? Tag.find(params[:name]).recipes.page(params[:page]) : Recipe.page(params[:page])
   end
 
   def show
@@ -66,10 +58,24 @@ class User::RecipesController < ApplicationController
     redirect_to user_path(current_user.id)
   end
 
+  def search
+    if params[:keyword].present?
+      @recipes = Recipe.joins(:tags, :genre, :user).where("recipes.name LIKE ? OR tags.name LIKE ? OR genres.name LIKE ? OR users.name LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%").distinct.page(params[:page])
+      @keyword = params[:keyword]
+      @genres = Genre.all
+      @user = current_user
+    else
+      @genres = Genre.all
+      @user = current_user
+      @recipes = Recipe.page(params[:page])
+    end
+  end
+
   private
 
   def recipe_params
     params.require(:recipe).permit(:name, :image, :serving, :genre_id, :recipe_explanation, :point_explanation,
+                                  tag_ids:[],
                                   ingredients_attributes:[:id, :name, :amount, :_destroy],
                                   cooking_methods_attributes:[:id, :cooking_explanation, :image, :step, :_destroy])
   end

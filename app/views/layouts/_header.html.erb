@@ -7,9 +7,15 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <%= form_tag({controller: "recipes", action: "index"}, method: :get) do %>
-          <%= text_field_tag :search %>
-          <%= submit_tag '検索' %>
+        <%= form_with url: search_recipes_path, local: true, method: :get do |form| %>
+          <%= form.text_field :keyword %>
+          <%= form.submit "検索" %>
+          <div class="tag-box">
+          <% @all_tags.each do |tag| %>
+            <%= link_to tag.name, recipes_path(name: tag.id) %>
+          <% end %>
+          <%= link_to '>', tags_index_path %>
+          </div>
         <% end %>
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>

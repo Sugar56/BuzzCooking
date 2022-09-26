@@ -13,6 +13,12 @@ class Admin::RecipesController < ApplicationController
     @recipe_comment = RecipeComment.new
   end
 
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.destroy
+    redirect_to admin_recipes_path
+  end
+
   def check
   end
 end

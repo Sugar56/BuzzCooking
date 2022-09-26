@@ -35,8 +35,8 @@ class User < ApplicationRecord
       user.last_name_kana = "ゲスト"
       user.first_name_kana = "ユーザー"
       user.address = "東京都"
-      user.telephone_number = "000000000"
-      user.name = "guestus"
+      user.telephone_number = "00000000000"
+      user.name = "guestuser"
       user.self_introduction = "ゲストです。"
     end
   end

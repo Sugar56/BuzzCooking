@@ -12,7 +12,7 @@
           <%= form.submit "検索" %>
           <div class="tag-box">
           <% @all_tags.each do |tag| %>
-            <%= link_to tag.name, recipes_path(name: tag.id) %>
+            <%= link_to tag.name, recipes_path(name: tag.id), class: "btn btn-sm btn-warning" %>
           <% end %>
           <%= link_to '>', tags_index_path %>
           </div>

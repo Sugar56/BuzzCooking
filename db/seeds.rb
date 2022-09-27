@@ -71,14 +71,26 @@ Recipe.create!(
       recipe_explanation: "recipe_explanation",
       point_explanation: "point_explanation",
       tag_ids:[ 1, 2 ],
-      ingredients_attributes:[{
-        name: "ingredients_name",
-        amount: 1,
-      }],
-      cooking_methods_attributes:[{
-        cooking_explanation: "cooking_explanation",
-        step: "step",
-      }],
+      ingredients_attributes:[
+        {
+          name: "ingredients_name",
+          amount: 1,
+        },
+        {
+          name: "ingredients_name2",
+          amount: 2,
+        },
+      ],
+      cooking_methods_attributes:[
+        {
+          cooking_explanation: "cooking_explanation",
+          step: "step",
+        },
+        {
+          cooking_explanation: "cooking_explanation2",
+          step: "step2",
+        }
+      ],
     }
   ]
 )

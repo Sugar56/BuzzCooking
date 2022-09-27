@@ -26,4 +26,6 @@
 
 ## 使用素材
 - サービス名: Pixabay: 2.600万点以上の高品質なフリー画像素材
-- URL:
+- URL: https://pixabay.com/ja/
+- サービス名: iStock
+- URL: https://www.istockphoto.com/jp/search/2/image?phrase=%E6%96%99%E7%90%86

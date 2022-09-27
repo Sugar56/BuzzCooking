@@ -38,6 +38,7 @@ Rails.application.routes.draw do
         get 'search'
       end
     end
+    resources :genres, only: [:show]
     get 'tags/index'
   end
 

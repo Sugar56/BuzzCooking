@@ -20,13 +20,13 @@
     <div class="col-sm-9">
       <div class="row" style="margin-bottom: 20px;">
         <div class="col d-flex flex-row">
-          <h2><strong><span style="background-color: #FFDBC9;">レシピ一覧</span></strong></h2>
+          <h2><strong><span style="background-color: #FFDBC9;">レシピ一覧</span></strong> 検索 "<%= @genre.name %>"</h2>
           (全<%= @recipes.count %>件)
         </div>
       </div>
 
       <div class="row" style="margin-bottom: 50px;">
-        <% @recipes.each do |recipe| %>
+        <% @genre.recipes.each do |recipe| %>
         <div class="col-sm-4" style="margin-bottom: 10px;">
           <%= image_tag recipe.get_image, size: "200x200" %>
         </div>

@@ -1,0 +1,8 @@
+class User::GenresController < ApplicationController
+  def show
+    @genres = Genre.all
+    @genre = Genre.find(params[:id])
+    @user = current_user
+    @recipes = Recipe.page(params[:page])
+  end
+end

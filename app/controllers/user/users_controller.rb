@@ -25,14 +25,6 @@ class User::UsersController < ApplicationController
     @recipes = Recipe.find(favorites)
   end
 
-  def withdraw
-    @user = current_user
-    @user.update(is_deleted: true)
-    reset_session
-    flash[:notice] = "退会処理を実行致しました"
-    redirect_to root_path
-  end
-
   private
 
   def user_params

@@ -25,7 +25,7 @@
         <div class="col" style="text-align:right;">
           <% if @user == current_user && @user.name != "guestuser" %>
             <%= link_to "投稿編集", edit_recipe_path(@recipe.id), class: "btn btn-sm btn-success" %>
-            <%= link_to "投稿削除", recipe_path(@recipe.id), method: :delete, data: { confilm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %>
+            <%= link_to "投稿削除", recipe_path(@recipe.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
           <% end %>
         </div>
       </div>

@@ -19,9 +19,6 @@ class User::UsersController < ApplicationController
     end
   end
 
-  def check
-  end
-
   def favorites
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:recipe_id)

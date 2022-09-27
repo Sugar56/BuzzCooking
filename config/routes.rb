@@ -17,7 +17,6 @@ Rails.application.routes.draw do
     root to: "homes#top"
     resources :genres, only: [:index, :edit, :create, :update, :destroy]
     resources :recipes, only: [:index, :show, :destroy]
-    get "/check" => "recipes#check"
     resources :users, only: [:show, :edit, :update]
   end
 
@@ -29,8 +28,6 @@ Rails.application.routes.draw do
         get :favorites
       end
     end
-    get "/users/check" => "users#check"
-    patch "users/withdraw" => "users#withdraw"
     resources :recipes, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
       resource :favorites, only: [:create, :destroy]
       resources :recipe_comments, only: [:create, :destroy]
@@ -42,7 +39,6 @@ Rails.application.routes.draw do
       end
     end
     get 'tags/index'
-    get "users/check" => "recipes#check"
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

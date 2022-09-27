@@ -18,7 +18,4 @@ class Admin::RecipesController < ApplicationController
     @recipe.destroy
     redirect_to admin_recipes_path
   end
-
-  def check
-  end
 end

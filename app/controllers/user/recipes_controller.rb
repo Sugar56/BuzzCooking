@@ -48,10 +48,6 @@ class User::RecipesController < ApplicationController
     end
   end
 
-  def check
-    @recipe = Recipe.find(params[:id])
-  end
-
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy

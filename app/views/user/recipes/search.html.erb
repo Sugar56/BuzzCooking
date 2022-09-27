@@ -1,64 +1,44 @@
 <div class="container" style="padding-top: 10px;">
-  <div class="row">
-    <div class="col-sm-3">
-      <table class="table table-hover" style="background-color: #CCFFCC;">
-        <thead>
-          <tr align="center">
-            <th>ジャンル検索</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @genres.each do |genre| %>
-          <tr>
-            <td><%= link_to genre.name, recipes_path(name: genre.id) %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+  <div class="row" style="margin-bottom: 10px;">
+    <div class="col d-flex flex-row">
+      <h2><strong><span style="background-color: #FFDBC9;">レシピ一覧</span></strong> 検索結果 "<%= @keyword %>"</h2>
+      (全<%= @recipes.count %>件)
     </div>
+  </div>
 
-    <div class="col-sm-9">
-      <div class="row" style="margin-bottom: 20px;">
-        <div class="col d-flex flex-row">
-          <h2><strong><span style="background-color: #FFDBC9;">レシピ一覧</span></strong> 検索結果 "<%= @keyword %>"</h2>
-          (全<%= @recipes.count %>件)
-        </div>
+    <div class="row offset-1" style="padding-bottom: 50px;">
+      <% @recipes.each do |recipe| %>
+      <div class="col-sm-4" style="margin-bottom: 10px;">
+        <%= image_tag recipe.get_image, size: "200x200" %>
       </div>
 
-      <div class="row" style="margin-bottom: 50px;">
-        <% @recipes.each do |recipe| %>
-        <div class="col-sm-4" style="margin-bottom: 10px;">
-          <%= image_tag recipe.get_image, size: "200x200" %>
-        </div>
-
-        <div class="col-sm-8">
-          <div class="row" style="margin-bottom: 30px;">
-            <div class="col-6">
-              <strong><%= link_to recipe.name, recipe_path(recipe.id) %></strong>
-            </div>
-            <div class="col-6" style="text-align: right;">
-              <% if @user == current_user && @user.name != "guestuser" %>
-                <div id="favorite_buttons_<%= recipe.id %>">
-                  <%= render "user/favorites/favorite", recipe: recipe %>
-                </div>
-              <% end %>
-            </div>
+      <div class="col-sm-8">
+        <div class="row" style="margin-bottom: 30px;">
+          <div class="col-6">
+            <strong><%= link_to recipe.name, recipe_path(recipe.id) %></strong>
           </div>
-
-          <div class="row" style="margin-bottom: 50px;">
-            <div class="col">
-              <%= recipe.recipe_explanation %>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <%= recipe.user.name %>
-            </div>
+          <div class="col-6" style="text-align: right;">
+            <% if @user == current_user && @user.name != "guestuser" %>
+              <div id="favorite_buttons_<%= recipe.id %>">
+                <%= render "user/favorites/favorite", recipe: recipe %>
+              </div>
+            <% end %>
           </div>
         </div>
-        <% end %>
+
+        <div class="row" style="margin-bottom: 50px;">
+          <div class="col">
+            <%= recipe.recipe_explanation %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <%= recipe.user.name %>
+          </div>
+        </div>
       </div>
+      <% end %>
       <div class="row" style="margin-bottom: 50px;">
         <div class="col">
           <%= paginate @recipes %>

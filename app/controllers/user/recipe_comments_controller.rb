@@ -10,6 +10,7 @@ class User::RecipeCommentsController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:recipe_id])
     RecipeComment.find_by(id: params[:id], recipe_id: params[:recipe_id]).destroy
+    render 'user/recipe_comments/destroy'
   end
 
   private

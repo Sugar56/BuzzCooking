@@ -41,3 +41,44 @@ Genre.create!(
     { name: '中華' }
   ]
 )
+
+Recipe.create!(
+  [
+    {
+      name: 'RecipeName',
+      user_id: 1,
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/asia.jpg"), filename:"asia.jpg"),
+      serving: 1,
+      genre_id: 1,
+      recipe_explanation: "recipe_explanation",
+      point_explanation: "point_explanation",
+      tag_ids:[ 1, 2 ],
+      ingredients_attributes:[{
+        name: "ingredients_name",
+        amount: 1,
+      }],
+      cooking_methods_attributes:[{
+        cooking_explanation: "cooking_explanation",
+        step: "step",
+      }],
+    },
+    {
+      name: 'RecipeName',
+      user_id: 1,
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/asia.jpg"), filename:"asia.jpg"),
+      serving: 1,
+      genre_id: 1,
+      recipe_explanation: "recipe_explanation",
+      point_explanation: "point_explanation",
+      tag_ids:[ 1, 2 ],
+      ingredients_attributes:[{
+        name: "ingredients_name",
+        amount: 1,
+      }],
+      cooking_methods_attributes:[{
+        cooking_explanation: "cooking_explanation",
+        step: "step",
+      }],
+    }
+  ]
+)

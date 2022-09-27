@@ -21,7 +21,7 @@
       <div class="row" style="margin-bottom: 20px;">
         <div class="col d-flex flex-row">
           <h2><strong><span style="background-color: #FFDBC9;">レシピ一覧</span></strong></h2>
-          (全<%= @recipes.count %>件)
+          (全<%= @recipes_all.count %>件)
         </div>
       </div>
 
@@ -59,7 +59,11 @@
         </div>
         <% end %>
       </div>
-      <%= paginate(@recipes) %>
+      <div class="row" style="margin-bottom: 50px;">
+        <div class="col">
+          <%= paginate(@recipes) %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

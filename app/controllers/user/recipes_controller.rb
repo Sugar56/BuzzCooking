@@ -21,6 +21,7 @@ class User::RecipesController < ApplicationController
   def index
     @genres = Genre.all
     @user = current_user
+    @recipes_all = Recipe.all
     @recipes = params[:name].present? ? Tag.find(params[:name]).recipes.page(params[:page]) : Recipe.page(params[:page])
   end
 

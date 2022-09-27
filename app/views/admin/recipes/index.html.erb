@@ -29,7 +29,11 @@
           <% end %>
         </tbody>
       </table>
-      <%= paginate @recipes %>
+      <div class="row" style="margin-bottom: 50px;">
+        <div class="col">
+          <%= paginate @recipes %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

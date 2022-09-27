@@ -4,6 +4,6 @@ class User::GenresController < ApplicationController
     @genres = Genre.all
     @genre = Genre.find(params[:id])
     @user = current_user
-    @recipes = Recipe.page(params[:page])
+    @recipes = @genre.recipes.page(params[:page])
   end
 end

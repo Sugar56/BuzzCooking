@@ -386,7 +386,7 @@ Recipe.create!(
       genre_id: 2,
       recipe_explanation: "健康的！",
       point_explanation: "材料の火の通り方を熟知すること！",
-      tag_ids:[ 1, 5 ],
+      tag_ids:[ 2, 5 ],
       ingredients_attributes:[
         {
           name: "キャベツ",

@@ -799,6 +799,89 @@ Recipe.create!(
           step: "9",
         }
       ]
+    },
+
+    {
+      name: 'しっとり甘めのスイートポテト',
+      user_id: 2,
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/poteto.jpeg"), filename:"poteto.jpeg"),
+      serving: 5,
+      genre_id: 1,
+      recipe_explanation: "しっとり美味しく簡単にできる！",
+      point_explanation: "よく混ぜ合わせること！",
+      tag_ids:[ 6 ],
+      ingredients_attributes:[
+        {
+          name: "さつまいも",
+          amount: "正味500g",
+        },
+        {
+          name: "マーガリン",
+          amount: "50g",
+        },
+        {
+          name: "グラニュー糖",
+          amount: "80g",
+        },
+        {
+          name: "牛乳",
+          amount: "75g",
+        },
+        {
+          name: "ケーキシロップ",
+          amount: "大さじ1〜2",
+        },
+        {
+          name: "塩",
+          amount: "少々",
+        },
+        {
+          name: "バニラオイル",
+          amount: "適量",
+        },
+        {
+          name: "ブランデー",
+          amount: "7〜8g",
+        },
+        {
+          name: "卵黄",
+          amount: "1個",
+        },
+        {
+          name: "つや出し用卵黄",
+          amount: "1個",
+        }
+      ],
+      cooking_methods_attributes:[
+        {
+          cooking_explanation: "さつまいもは蒸して皮を取り除きマッシュし鍋に入れる",
+          step: "1",
+        },
+        {
+          cooking_explanation: "step1に材料のマーガリンからバニラオイルまでを上から順番に加えてその都度ゴムベラ等でよく混ぜ合わせる",
+          step: "2",
+        },
+        {
+          cooking_explanation: "step2を火にかけて混ぜ合わせながら弱火で練る",
+          step: "3",
+        },
+        {
+          cooking_explanation: "step3に卵黄、ブランデーを加えてよく混ぜ合わせる",
+          step: "4",
+        },
+        {
+          cooking_explanation: "天板にシリコン製の耐熱シートを敷き、スプーンとバターナイフ等で生地を形作りながら天板に並べる",
+          step: "5",
+        },
+        {
+          cooking_explanation: "step5に刷毛やスプーンで卵黄を塗る",
+          step: "6",
+        },
+        {
+          cooking_explanation: "予熱180度20分〜25分オーブンチン！キレイな焼き色が付いたら完成",
+          step: "7",
+        }
+      ]
     }
   ]
 )

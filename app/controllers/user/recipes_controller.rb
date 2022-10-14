@@ -28,7 +28,7 @@ class User::RecipesController < ApplicationController
   def show
     @genres = Genre.all
     @recipe = Recipe.find(params[:id])
-    @user = User.find(params[:id])
+    @user = current_user
     @ingredients = @recipe.ingredients
     @cooking_methods = @recipe.cooking_methods
     @recipe_comment = RecipeComment.new

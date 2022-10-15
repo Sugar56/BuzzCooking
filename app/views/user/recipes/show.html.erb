@@ -23,7 +23,7 @@
           <h2><strong><span style="background-color: #FFDBC9;">レシピ詳細</span></strong></h2>
         </div>
         <div class="col" style="text-align:right;">
-          <% if @user == current_user && @user.name != "guestuser" %>
+          <% if @recipe.user == current_user && @user.name != "guestuser" %>
             <%= link_to "投稿編集", edit_recipe_path(@recipe.id), class: "btn btn-sm btn-success" %>
             <%= link_to "投稿削除", recipe_path(@recipe.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
           <% end %>

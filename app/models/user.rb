@@ -14,7 +14,7 @@ class User < ApplicationRecord
   validates :last_name_kana, presence: true
   validates :first_name_kana, presence: true
   validates :address, presence: true
-  validates :telephone_number, presence: true
+  validates :telephone_number, presence: true, numericality: {only_integer: true}
   validates :email, presence: true
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }
   validates :self_introduction, presence: true, length: { maximum: 50 }

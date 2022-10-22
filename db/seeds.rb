@@ -882,6 +882,65 @@ Recipe.create!(
           step: "7",
         }
       ]
+    },
+
+    {
+      name: 'だし巻き卵',
+      user_id: 1,
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/dashimaki.jpeg"), filename:"dashimaki.jpeg"),
+      serving: 2,
+      genre_id: 2,
+      recipe_explanation: "柔らかく旨味がある！",
+      point_explanation: "しっかりめの味付けにする！",
+      tag_ids:[ 13 ],
+      ingredients_attributes:[
+        {
+          name: "卵",
+          amount: "3個",
+        },
+        {
+          name: "めんつゆ（2倍濃縮）",
+          amount: "大さじ1.5",
+        },
+        {
+          name: "だし汁（又は水）",
+          amount: "大さじ1.5",
+        },
+        {
+          name: "こめ油（又はサラダ油）",
+          amount: "適量",
+        }
+      ],
+      cooking_methods_attributes:[
+        {
+          cooking_explanation: "ボウルに卵を加えてよく溶き、白身は箸で持ち上げる様にして切る",
+          step: "1",
+        },
+        {
+          cooking_explanation: "めんつゆ・だし汁を加えて混ぜ合わせる",
+          step: "2",
+        },
+        {
+          cooking_explanation: "卵焼き器をしっかりと熱し、油を敷く",
+          step: "3",
+        },
+        {
+          cooking_explanation: "強めの弱火にしてstep1,2で作ったものをを1/4量流し入れる",
+          step: "4",
+        },
+        {
+          cooking_explanation: "奥から手前に巻いていき、奥に寄せる",
+          step: "5",
+        },
+        {
+          cooking_explanation: "薄く油を敷き、step1,2で作ったものの1/4量を流し入れ（奥の卵焼きの下にも流し込む）、手前に巻いていくのを2回繰り返す",
+          step: "6",
+        },
+        {
+          cooking_explanation: "卵焼きを取り出し、粗熱が取れたら切り分ける",
+          step: "7",
+        }
+      ]
     }
   ]
 )

@@ -6,43 +6,42 @@
     </div>
   </div>
 
-    <div class="row offset-1" style="padding-bottom: 50px;">
-      <% @recipes.each do |recipe| %>
-      <div class="col-sm-4" style="margin-bottom: 10px;">
-        <%= image_tag recipe.get_image, size: "200x200" %>
-      </div>
+  <div class="row offset-1" style="padding-bottom: 50px;">
+    <% @recipes.each do |recipe| %>
+    <div class="col-sm-4" style="margin-bottom: 10px;">
+      <%= image_tag recipe.get_image, size: "200x200" %>
+    </div>
 
-      <div class="col-sm-8">
-        <div class="row" style="margin-bottom: 30px;">
-          <div class="col-6">
-            <strong><%= link_to recipe.name, recipe_path(recipe.id) %></strong>
-          </div>
-          <div class="col-6" style="text-align: right;">
-            <% if @user == current_user && @user.name != "guestuser" %>
-              <div id="favorite_buttons_<%= recipe.id %>">
-                <%= render "user/favorites/favorite", recipe: recipe %>
-              </div>
-            <% end %>
-          </div>
+    <div class="col-sm-8">
+      <div class="row" style="margin-bottom: 30px;">
+        <div class="col-6">
+          <strong><%= link_to recipe.name, recipe_path(recipe.id) %></strong>
         </div>
-
-        <div class="row" style="margin-bottom: 50px;">
-          <div class="col">
-            <%= recipe.recipe_explanation %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <%= recipe.user.name %>
-          </div>
+        <div class="col-6" style="text-align: right;">
+          <% if @user == current_user && @user.name != "guestuser" %>
+            <div id="favorite_buttons_<%= recipe.id %>">
+              <%= render "user/favorites/favorite", recipe: recipe %>
+            </div>
+          <% end %>
         </div>
       </div>
-      <% end %>
+
       <div class="row" style="margin-bottom: 50px;">
         <div class="col">
-          <%= paginate @recipes %>
+          <%= recipe.recipe_explanation %>
         </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <%= recipe.user.name %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <div class="row" style="margin-bottom: 50px;">
+      <div class="col">
+        <%= paginate @recipes %>
       </div>
     </div>
   </div>

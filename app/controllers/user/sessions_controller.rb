@@ -27,7 +27,6 @@ class User::SessionsController < Devise::SessionsController
   # end
 
   protected
-
   # ログイン制限
   def check_user
     user = User.find_by(email: params[:user][:email])
